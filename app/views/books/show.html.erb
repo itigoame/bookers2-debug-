@@ -49,7 +49,7 @@
                   <tr>
                   <td>
                   <%= image_tag book_comment.user.get_profile_image, size: '50x50' %><br>
-                  <%= link_to book_comment.user.name,user_path(@viewer) %>
+                  <%= link_to book_comment.user.name,user_path(book_comment.user) %>
                   </td>
                   <td>
                   <%= book_comment.comment %>

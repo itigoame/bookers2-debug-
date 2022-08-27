@@ -17,20 +17,20 @@
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
         <td>
-          <% @books.each do |t| %>
-          <% if t.favorited_by?(current_user) %>
 
-              <%= link_to book_favorites_path(t.id),method: :delete do %>
-                <p class="text-danger">♥<%= t.favorites.count %></p>
+          <% if book.favorited_by?(current_user) %>
+
+              <%= link_to book_favorites_path(book.id),method: :delete do %>
+                <p class="text-danger">♥<%= book.favorites.count %></p>
               <% end %>
 
           <% else %>
 
-              <%= link_to book_favorite_path(t.id,favorite.id),method: :post do %>
-                <p class="text-primary">♥<%= t.favorites.count %></p>
+              <%= link_to book_favorites_path(book.id),method: :post do %>
+                <p class="text-primary">♥<%= book.favorites.count %></p>
               <% end %>
 
-          <% end %>
+
           <% end %>
         </td>
         <td>コメント数：<%= book.book_comments.count %></td>
