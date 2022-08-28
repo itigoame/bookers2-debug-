@@ -5,11 +5,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @followings = @user.followings
+    @followers = @user.followers
+
   end
 
   def index
     @users = User.all
     @book = Book.new
+    @followings = current_user.followings
+    @followers = current_user.followers
+    @user = current_user
   end
 
   def edit
@@ -23,6 +29,18 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  # フォロー一覧
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings
+  end
+
+  # フォロワー一覧
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
   end
 
   private
