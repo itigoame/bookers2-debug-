@@ -1,0 +1,46 @@
+<% if @range == "User" %>
+ <!--検索対象モデルがUserの時 -->
+<h2>Users search for "<%= params[:word] %>"</h2>
+
+<table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <td>Image</td>
+        <td>Name</td>
+      </tr>
+    </thead>
+  <% @users.each do |user| %>
+      <tbody>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+          <td><%= user.name %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+
+  <% else %>
+
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+      <h2>Books search for "<%= params[:word]  %>"</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <td></td>
+            <td>Title</td>
+            <td>Opinion</td>
+          </tr>
+        </thead>
+
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td><%= image_tag book.user.get_profile_image, size: '50x50' %></td>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+          </tr>
+          </tbody>
+        <% end %>
+      </table>
+
+  <% end %>
