@@ -21,7 +21,7 @@
                 <td class = "favorite_btn">
                   <%= render "favorites/favorite", book: @bookshow %>
                 </td>
-                <td class = "comment-all" >コメント数：<%= @bookshow.book_comments.count %></td>
+                <td class = "comment-count" >コメント数：<%= @bookshow.book_comments.count %></td>
               <% if @user == current_user %>
                 <td><%= link_to "Edit" ,edit_book_path(@bookshow) ,class: "btn btn-sm btn-success" %></td>
                 <td><%= link_to "Destroy" ,book_path(@bookshow) ,class: "btn btn-sm btn-danger", method: :delete %></td>
