@@ -17,13 +17,13 @@
     <td><%= link_to user.followers.count,followers_user_path(user.id) %></td>
   </tr>
 </table>
-<% if user == current_user %>
+<% if (user == current_user) && (user.name != "guestuser") %>
   <div class='row'>
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
   </div>
-<% else %>
+<% elsif user != current_user %>
     <% if current_user.followings?(user) %>
       <%= link_to "フォロー外す",user_relationships_path(user.id), class: "btn btn-info", method: :delete %>
     <% else %>
