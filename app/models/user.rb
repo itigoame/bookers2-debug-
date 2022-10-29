@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_many :follower, class_name: "Relationship",foreign_key: "follower_id",dependent: :destroy
   has_many :followings,through: :follower, source: :followed
-  
+
   has_many :followed, class_name: "Relationship" ,foreign_key: "followed_id",dependent: :destroy
   has_many :followers,through: :followed, source: :follower
 
@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length:{maximum: 50 }
-  
+
   # 検索窓
   def self.looks(search, word)
     if search == "perfect_match"
@@ -34,7 +34,12 @@ class User < ApplicationRecord
     end
   end
 
-
+  def self.guest
+    find_or_create_by!(name: "guestuser",email: "guest@example.com") do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
