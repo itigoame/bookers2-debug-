@@ -45,7 +45,7 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  # フォローしたときの処理.
+  # フォローしたときの処理
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
