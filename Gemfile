@@ -56,3 +56,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "net-smtp"
 gem 'jquery-rails'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem "omniauth-rails_csrf_protection"
+
+# .envで環境変数を管理する場合に必要になります(.envを使用しない場合は記述しなくて結構です)
+gem 'dotenv-rails'
